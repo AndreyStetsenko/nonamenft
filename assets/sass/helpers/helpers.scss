@@ -1,0 +1,759 @@
+html {
+    min-height: 100vh;
+    // scroll-behavior: smooth; // плавний скролл до якорів
+}
+
+body {
+    // height: 100%; // then => document.documentElement.scrollTop = 0;
+    min-height: 100vh;
+    overflow: auto;
+    overflow-x: hidden;
+    font-size: 18px;
+    line-height: 1;
+    font-family: $font;
+    font-weight: 400;
+    //background-color: $bg-main;
+    -webkit-overflow-scrolling: touch;
+
+    * {
+        word-break: keep-all;
+        word-wrap: break-word;
+        font-family: $font;
+
+        /*
+         * Override black outline in most cases
+         */
+        &:hover,
+        &:focus {
+        	outline: none;
+        }
+    }
+
+    &.active {
+        overflow: hidden;
+    }
+
+    &.menu-opened {
+        overflow: hidden;
+        min-height: auto;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        // pointer-events: none; // not tested
+
+        * {
+            // pointer-events: auto; // not tested
+        }
+    }
+
+    &.medium-zoom--opened {
+        .scrollToTop {
+            z-index: -10;
+        }
+    }
+}
+
+/* Avoid Chrome to see Safari hack */
+// @supports (-webkit-touch-callout: none) {
+/* The hack for Safari */
+//   height: -webkit-fill-available;
+// }
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    ::before,
+    ::after {
+        // animation-delay: -1ms !important;
+        // animation-duration: 1ms !important;
+        // animation-iteration-count: 1 !important;
+        // background-attachment: initial !important;
+        scroll-behavior: auto !important;
+        // transition-duration: 0s !important;
+        // transition-delay: 0s !important;
+    }
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100vh;
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 1220px;
+    background-color: $white;
+    @include box-shadow(0, 1px, 8px, 0, rgba(0, 0, 0, 0.2));
+
+    &-static-block {
+        overflow: visible;
+    }
+
+    @media screen and (max-width: 1240px) {
+        width: 100%;
+    }
+}
+
+main {
+    min-height: 300px;
+
+    @include media (">=md") {
+        min-height: 50vh;
+    }
+}
+
+main,
+footer {
+    // content-visibility: auto
+}
+
+.container {
+    @include media (">=md") {
+        max-width: 100%;
+    }
+}
+
+#skipnav {
+    display: none !important;
+}
+
+.content {
+    padding: 45px 40px 0 40px;
+
+    &-wrapper {
+        padding: 45px 85px;
+
+        @include media ("<xl") {
+            padding: 30px;
+        }
+
+        @include media ("<sm") {
+            padding: 20px 15px;
+        }
+
+        &.gradient {
+            background: linear-gradient(0deg, $white 0%, #F3F7F9 100%);
+        }
+    }
+}
+
+.font-weight {
+    &-medium {
+        font-weight: 500 !important;
+    }
+
+    &-semi {
+        font-weight: 600 !important;
+    }
+}
+
+.bg {
+    &-gray {
+        // background-color: $light-grey;
+        //background-color: #F5F7FA;
+        background-color: #FAFAFA;
+    }
+
+    &-white {
+        background-color: $white;
+    }
+}
+
+.default-card {
+    background-color: #fff;
+    border: 1px solid #E7E8EB;
+    border-radius: 4px;
+    padding: 20px;
+    font-size: 16px;
+
+    &_header {
+        max-width: 275px;
+        height: 80px;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 27px;
+        overflow: hidden;
+        display: -moz-box;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -moz-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+    }
+}
+
+.text-muted {
+    font-family: $font;
+    color: #6D727C !important;
+
+    p {
+        font-family: $font;
+        color: #6D727C !important;
+    }
+
+    &-sm {
+        line-height: 21px;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    &-md {
+        line-height: 24px;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+}
+
+.change-opacity {
+    opacity: 0;
+}
+
+.article-level {
+    &-1 {
+        font-family: 'KyivType3';
+        font-size: 48px;
+        line-height: 56px;
+        font-weight: 700;
+        margin-bottom: 32px;
+        letter-spacing: 0.01em;
+
+        @include media ("<lg") {
+            margin-bottom: 18px;
+            font-size: 32px;
+            line-height: 38px;
+        }
+    }
+
+    &-2 {
+        @include f-s(32);
+        font-family: $font;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1em;
+        letter-spacing: 1.2px;
+        font-variant: small-caps;
+
+        @include media ("<lg") {
+            // margin-top: 20px;
+            @include f-s(24);
+        }
+    }
+
+    &-3 {
+        @include f-s(28);
+        font-family: $font;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1em;
+        letter-spacing: 1px;
+
+        @include media ("<lg") {
+            // margin-top: 20px;
+            @include f-s(24);
+        }
+    }
+
+    &-4 {
+        @include f-s(24);
+        font-family: $font;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.5em;
+        letter-spacing: 1px;
+
+        @include media ("<lg") {
+            // margin-top: 20px;
+            @include f-s(20);
+        }
+    }
+
+    &-5 {
+        @include f-s(20);
+        font-family: $font;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.5em;
+        letter-spacing: 1px;
+
+        @include media ("<lg") {
+            @include f-s(18);
+        }
+    }
+}
+
+.columns {
+    &-3 {
+        columns: 3;
+        -moz-columns: 3;
+        -webkit-columns: 3;
+        @include media(">=md", "<lg") {
+            columns: 2;
+            -moz-columns: 2;
+            -webkit-columns: 2;
+        }
+        @include media("<md") {
+            columns: 1;
+            -moz-columns: 1;
+            -webkit-columns: 1;
+        }
+    }
+}
+
+.fz {
+
+    &-16,
+    &-14 {
+        font-family: $font;
+        margin-bottom: 10px;
+    }
+
+    &-16 {
+        @include f-s(16);
+    }
+
+    &-14 {
+        @include f-s(14);
+    }
+}
+
+.link-item {
+    line-height: 24px;
+    color: $link-c;
+}
+
+.text-gray {
+    color: $text-c-grey;
+}
+
+.text-black {
+    color: $font-c;
+}
+
+*::selection {
+    color: $white;
+    background: $selection;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid $n-r-rgba;
+    width: 100%;
+    display: block;
+
+    &.divider {
+        border-top: 1px solid $n-r-rgba;
+        margin: 30px 0;
+    }
+
+    &.fast-search {
+        padding: 0;
+        margin: 20px 0;
+
+        @include media ("<lg") {
+            margin: 15px 0;
+        }
+    }
+
+    &.npa {
+        margin: 60px 0 40px 125px;
+    }
+
+    &.hr {
+        width: 100%;
+        margin-top: 15px;
+        margin-bottom: 15px;
+
+        &-main-items {
+            margin: 0;
+            height: 0;
+
+            @include media ("<md") {
+                margin: 20px 0 0;
+            }
+        }
+    }
+}
+
+.logo-page-print {
+    display: none;
+}
+
+.img-fluid {
+    display: block;
+}
+
+a {
+    color: $link-c;
+
+    &.span_border {
+        &:hover {
+            span {
+                border-bottom: 1px solid $blue-old;
+            }
+        }
+    }
+}
+
+p {
+    font-family: $font;
+    font-weight: 400;
+    @include f-s(18);
+    color: $font-c-title;
+    line-height: 27px;
+}
+
+b,
+strong {
+    font-weight: 700;
+    font-family: $font;
+}
+
+#layout-content {
+    margin-top: 60px;
+
+    @include media ("<md") {
+        margin-top: 25px;
+    }
+
+    a {
+        &:hover {
+            text-decoration: underline;
+            @include transition(.2s ease-in-out);
+        }
+    }
+}
+
+//      margin top
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+
+    @include media ("<md") {
+        margin-top: 10px;
+    }
+}
+
+.mt-40 {
+    margin-top: 40px;
+
+    @include media ("<md") {
+        margin-top: 15px;
+    }
+}
+
+.mt-60 {
+    margin-top: 60px;
+
+    @include media (">=xs", "<md") {
+        margin-top: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-top: 30px;
+    }
+}
+
+.mt-80 {
+    margin-top: 80px;
+
+    @include media (">=xs", "<md") {
+        margin-top: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-top: 40px;
+    }
+}
+
+.mt-100 {
+    margin-top: 100px;
+
+    @include media (">=xs", "<md") {
+        margin-top: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-top: 60px;
+    }
+}
+
+.mt-120 {
+    margin-top: 120px;
+
+    @include media (">=xs", "<md") {
+        margin-top: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-top: 70px;
+    }
+}
+
+.mt-140 {
+    margin-top: 140px;
+
+    @include media (">=xs", "<md") {
+        margin-top: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-top: 80px;
+    }
+}
+
+//      margin bottom
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-20 {
+    margin-bottom: 20px!important;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+
+    @include media ("<md") {
+        margin-bottom: 10px;
+    }
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+
+    @include media ("<md") {
+        margin-bottom: 15px;
+    }
+}
+
+.mb-60 {
+    margin-bottom: 60px;
+
+    @include media (">=xs", "<md") {
+        margin-bottom: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-bottom: 30px;
+    }
+}
+
+.mb-80 {
+    margin-bottom: 80px;
+
+    @include media (">=xs", "<md") {
+        margin-bottom: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-bottom: 40px;
+    }
+}
+
+.mb-100 {
+    margin-bottom: 100px;
+
+    @include media (">=xs", "<md") {
+        margin-bottom: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-bottom: 60px;
+    }
+}
+
+.mb-120 {
+    margin-bottom: 120px;
+
+    @include media (">=xs", "<md") {
+        margin-bottom: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-bottom: 70px;
+    }
+}
+
+.mb-140 {
+    margin-bottom: 140px;
+
+    @include media (">=xs", "<md") {
+        margin-bottom: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        margin-bottom: 80px;
+    }
+}
+
+//   padding top
+.pt-40 {
+    padding-top: 40px;
+
+    @include media ("<md") {
+        padding-top: 15px;
+    }
+}
+
+.pt-60 {
+    padding-top: 60px;
+
+    @include media (">=xs", "<md") {
+        padding-top: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        padding-top: 40px;
+    }
+}
+
+.pt-80 {
+    padding-top: 80px;
+
+    @include media (">=xs", "<md") {
+        padding-top: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        padding-top: 50px;
+    }
+}
+
+.pt-100 {
+    padding-top: 100px;
+
+    @include media (">=xs", "<md") {
+        padding-top: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        padding-top: 60px;
+    }
+}
+
+.pt-120 {
+    padding-top: 120px;
+
+    @include media (">=xs", "<md") {
+        padding-top: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        padding-top: 70px;
+    }
+}
+
+//    padding  bottom
+.pb-40 {
+    padding-bottom: 40px;
+
+    @include media ("<md") {
+        padding-bottom: 15px;
+    }
+}
+
+.pb-60 {
+    padding-bottom: 60px;
+
+    @include media (">=xs", "<md") {
+        padding-bottom: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        padding-bottom: 40px;
+    }
+}
+
+.pb-80 {
+    padding-bottom: 80px;
+
+    @include media (">=xs", "<md") {
+        padding-bottom: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        padding-bottom: 50px;
+    }
+}
+
+.pb-100 {
+    padding-bottom: 100px;
+
+    @include media (">=xs", "<md") {
+        padding-bottom: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        padding-bottom: 60px;
+    }
+}
+
+.pb-120 {
+    padding-bottom: 120px;
+
+    @include media (">=xs", "<md") {
+        padding-bottom: 15px;
+    }
+
+    @include media (">=md", "<xl") {
+        padding-bottom: 70px;
+    }
+}
+
+.p-30 {
+    padding: 30px;
+
+    @include media ("<md") {
+        padding: 20px;
+    }
+}
+
+//    letter-spacing
+.ls-0 {
+    letter-spacing: 0;
+}
+
+//    line-height
+
+.line-height-normal {
+    line-height: normal;
+}
+
+.lh-27 {
+    line-height: 27px;
+}
+
+.lh-24 {
+    line-height: 24px!important;
+}
+
+.lh-38 {
+    line-height: 38px!important;
+}
+
+.fs-16 {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.mh-200 {
+    min-height: 200px;
+}
+
+.hide-pc {
+    @include media (">md") {
+        display: none !important;
+    }
+}
+
+.hide-mob {
+    @include media ("<md") {
+        display: none !important;
+    }
+}

@@ -1,0 +1,47 @@
+@import "ieBlock";
+
+html {
+    &.ipad {
+        @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+            main {
+                min-height: 50vh;
+            }
+        }
+    }
+}
+
+body {
+    &.ie {
+        .wrapper {
+            display: none !important;
+        }
+
+        .browser_container {
+            display: block !important;
+        }
+    }
+
+    &.ios,
+    &.iOS {
+        ::placeholder {
+            line-height: normal;
+        }
+
+        /* select,
+        input,
+        textarea {
+            @include media ("<md") {
+                font-family: 'Arial';
+            }
+        } */
+    }
+
+    &.ios,
+    &.iOS,
+    &.android,
+    &.Android-OS {
+        .main-breadcrumbs .breadcrumb-item {
+            line-height: 1.1em;
+        }
+    }
+}
